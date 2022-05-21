@@ -21,7 +21,36 @@ export default class TabNavigator extends Component{
     
     render(){
         return(
-            <Tab.Navigator>
+            <Tab.Navigator
+                labeled={false}
+                barStyle={styles.bottomTabStyle}
+                screenOptions={({ route }) => ({
+                tabBarIcon: ({ focused, color, size }) => {
+                    let iconName;
+                    if (route.name === "Feed") {
+                        iconName = focused ? "reader" : "reader-outline";
+                    } else if (route.name === "CreatePost") {
+                        iconName = focused ? "add-circle" : "add-circle-outline";
+                    }else if (route.name === "Home") {
+                        iconName = focused ? "Home" : "Home-outline";
+                    }else if (route.name === "Advanced") {
+                        iconName = focused ? "Clipboard" : "Clipboard-outline";
+                    }else if (route.name === "Profle") {
+                        iconName = focused ? "Person" : "Person-outline";
+                    }
+                    return (
+                    <Ionicons
+                        name={iconName}
+                        size={RFValue(25)}
+                        color={color}
+                        style={styles.icons}
+                    />
+                    );
+                }
+                })}
+                activeColor={"#ee8249"}
+                inactiveColor={"gray"}
+            >
         
                 
                 <Tab.Screen  name='Advanced' component = {Advanced}/>
