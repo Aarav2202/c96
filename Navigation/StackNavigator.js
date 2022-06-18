@@ -1,15 +1,22 @@
-import React,{Component} from 'react'
-import {View, Text} from 'react-native'
+import React from "react";
+import { createStackNavigator } from "@react-navigation/stack";
+import TabNavigator from "./TabNavigator";
+import Recommendation from "../screens/Recommendation";
 
-export default class StackNavigator extends Component{
-    render(){
-        return(
-            <View style = {{flex:1, justifyContent:'center', alignItems:'center'}}>
-                <Text>
-                    StackNavigator
-                </Text>
-            </View>
-        
-        )
-    }
-}
+const Stack = createStackNavigator();
+
+const StackNavigator = () => {
+  return (
+    <Stack.Navigator
+      initialRouteName="Home"
+      screenOptions={{
+        headerShown: false
+      }}
+    >
+      <Stack.Screen name="Home" component={TabNavigator} />
+      <Stack.Screen name="Recommendation" component={Recommendation} />
+    </Stack.Navigator>
+  );
+};
+
+export default StackNavigator;
